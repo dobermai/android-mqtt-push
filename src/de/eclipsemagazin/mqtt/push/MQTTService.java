@@ -47,5 +47,13 @@ public class MQTTService extends Service {
         super.onStart(intent, startId);
     }
 
-
+    @Override
+    public void onDestroy() {
+        try {
+            mqttClient.disconnect(0);
+        } catch (MqttException e) {
+            Toast.makeText(getApplicationContext(), "Something went wrong!" + e.getMessage(), Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
+    }
 }
