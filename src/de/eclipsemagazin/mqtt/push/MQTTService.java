@@ -19,6 +19,8 @@ public class MQTTService extends Service {
     /* In a real application, you should get an Unique Client ID of the device and use this, see
     http://android-developers.blogspot.de/2011/03/identifying-app-installations.html */
     public static final String clientId = "android-client";
+
+    public static final String TOPIC = "de/eclipsemagazin/blackice/warnings";
     private MqttClient mqttClient;
 
 
@@ -36,7 +38,7 @@ public class MQTTService extends Service {
             mqttClient.connect();
 
             //Subscribe to all subtopics of homeautomation
-            mqttClient.subscribe("stop/hammertime");
+            mqttClient.subscribe(TOPIC);
 
 
         } catch (MqttException e) {

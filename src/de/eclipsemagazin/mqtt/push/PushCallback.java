@@ -23,29 +23,31 @@ public class PushCallback implements MqttCallback {
 
     @Override
     public void connectionLost(Throwable cause) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        //We should reconnect here
     }
 
     @Override
     public void messageArrived(MqttTopic topic, MqttMessage message) throws Exception {
 
-        NotificationManager notificationManager = (NotificationManager)
+        final NotificationManager notificationManager = (NotificationManager)
                 context.getSystemService(Context.NOTIFICATION_SERVICE);
-        Notification notification = new Notification(R.drawable.snow,
-                "A new notification", System.currentTimeMillis());
+
+        final Notification notification = new Notification(R.drawable.snow,
+                "Black Ice Warning!", System.currentTimeMillis());
+
         // Hide the notification after its selected
         notification.flags |= Notification.FLAG_AUTO_CANCEL;
 
-        Intent intent = new Intent(context, BlackIceActivity.class);
-        PendingIntent activity = PendingIntent.getActivity(context, 0, intent, 0);
-        notification.setLatestEventInfo(context, "New Push",
-                new String(message.getPayload()), activity);
+        final Intent intent = new Intent(context, BlackIceActivity.class);
+        final PendingIntent activity = PendingIntent.getActivity(context, 0, intent, 0);
+        notification.setLatestEventInfo(context, "Black Ice Warning", "Outdoor temperature is " +
+                new String(message.getPayload()) + "°", activity);
         notification.number += 1;
         notificationManager.notify(0, notification);
     }
 
     @Override
     public void deliveryComplete(MqttDeliveryToken token) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        //We do not need this because we do not publish
     }
 }
