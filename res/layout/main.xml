@@ -3,9 +3,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" android:background="@color/background"
+                android:layout_height="match_parent" android:background="@android:color/background_light"
                 android:longClickable="true">
 
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView"
+            android:src="@drawable/blackice" android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true" android:layout_marginTop="47dp"/>
     <Button
             android:id="@+id/button1"
             android:layout_width="wrap_content"

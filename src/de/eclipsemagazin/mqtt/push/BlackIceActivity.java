@@ -10,6 +10,7 @@ import android.widget.Button;
 
 public class BlackIceActivity extends Activity {
 
+    public static final String SERVICE_CLASSNAME = "de.eclipsemagazin.mqtt.push.MQTTService";
     private Button button;
 
     @Override
@@ -62,13 +63,13 @@ public class BlackIceActivity extends Activity {
     private void stopBlackIceService() {
 
         final Intent intent = new Intent(this, MQTTService.class);
-        boolean b = stopService(intent);
+        stopService(intent);
     }
 
     private boolean serviceIsRunning() {
         ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
         for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
-            if ("de.eclipsemagazin.mqtt.push.MQTTService".equals(service.service.getClassName())) {
+            if (SERVICE_CLASSNAME.equals(service.service.getClassName())) {
                 return true;
             }
         }
