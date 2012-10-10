@@ -1,0 +1,5 @@
+/.idea/
+/gen/
+/local.properties
+/out/
+/mqtt-android-push.iml
