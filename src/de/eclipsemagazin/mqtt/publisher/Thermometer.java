@@ -8,7 +8,7 @@ import org.eclipse.paho.client.mqttv3.internal.MemoryPersistence;
 
 import java.util.Random;
 
-public class Publisher {
+public class Thermometer {
 
     public static final String BROKER_URL = "tcp://broker.mqttdashboard.com:1883";
     //public static final String BROKER_URL = "tcp://test.mosquitto.org:1883";
@@ -18,7 +18,7 @@ public class Publisher {
     private MqttClient client;
 
 
-    public Publisher() {
+    public Thermometer() {
         try {
             client = new MqttClient(BROKER_URL, MqttClient.generateClientId(), new MemoryPersistence());
         } catch (MqttException e) {
@@ -59,7 +59,7 @@ public class Publisher {
     }
 
     public static void main(String... args) {
-        final Publisher publisher = new Publisher();
-        publisher.start();
+        final Thermometer thermometer = new Thermometer();
+        thermometer.start();
     }
 }
